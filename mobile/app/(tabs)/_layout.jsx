@@ -4,14 +4,24 @@ import { useAuth } from "@clerk/clerk-expo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CreamCake from "../../constants/colors";
 import CustomAddButton from "../../components/CustomTab";
+import ProfileAvatar from "../../components/ProfileAvatar";
 
 const TabsLayout = () => {
   const { isSignedIn } = useAuth();
-  if (!isSignedIn) return <Redirect href={"/auth/sign-in"} />;
+  if (!isSignedIn) return <Redirect href={"/(auth)/sign-in"} />;
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          height: 80,
+        },
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "bold",
+          color: CreamCake.secondary,
+        },
+        headerRight: () => <ProfileAvatar />,
         tabBarActiveTintColor: CreamCake.secondary,
         tabBarInactiveTintColor: CreamCake.background,
         tabBarStyle: {
@@ -24,11 +34,9 @@ const TabsLayout = () => {
           marginHorizontal: 10,
         },
         tabBarLabelStyle: {
-          
           fontSize: 12,
           fontWeight: "bold",
         },
-
       }}
     >
       <Tabs.Screen
@@ -56,11 +64,7 @@ const TabsLayout = () => {
           tabBarIcon: () => (
             <Ionicons name="add" size={30} color={CreamCake.primary} />
           ),
-          tabBarButton: (props) => (
-            <CustomAddButton
-              {...props}
-            />
-          ), // Use the custom component
+          tabBarButton: (props) => <CustomAddButton {...props} />, // Use the custom component
         }}
       />
       <Tabs.Screen

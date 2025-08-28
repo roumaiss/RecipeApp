@@ -1,0 +1,49 @@
+import { StyleSheet } from "react-native";
+import CreamCake from "../../constants/colors";
+
+export const homeStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 15,
+    paddingTop: 20,
+    backgroundColor: CreamCake.background,
+  },
+  ScrollView: {
+    paddingBottom: 32,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  gradient: {
+    marginVertical: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 25,
+    borderRadius: 20,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 24,
+    color: CreamCake.background,
+    marginBottom: 5,
+  },
+  text: {
+    color: CreamCake.background,
+  },
+  button: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 25,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: CreamCake.primary,
+    borderStyle: "dashed",
+  },
+  btnText: {
+    color: CreamCake.secondary,
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+});
