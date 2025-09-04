@@ -15,8 +15,22 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import CreamCake from "../../constants/colors";
 import { useRouter } from "expo-router";
 
+import { getRecipes } from "../../services/recipes";
+import { useEffect, useState } from "react";
+
 export default function HomeScreen() {
   const route = useRouter();
+  const [recipes, setRecipes] = useState([]);
+  useEffect(() => {
+    // Fetch recipes or perform any setup actions here
+    getRecipes()
+      .then((data) => {
+        setRecipes(data.data);
+        console.log(data);
+      })
+      .catch((error) => console.error("Error fetching recipes:", error));
+  }, []);
+
   return (
     <View style={homeStyles.container}>
       <KeyboardAvoidingView
@@ -37,6 +51,14 @@ export default function HomeScreen() {
             <Ionicons name="add" size={30} color={CreamCake.secondary} />
             <Text style={homeStyles.btnText}>Add Recipe</Text>
           </TouchableOpacity>
+          {recipes?.map((recipe) => (
+            <View key={recipe.id} style={homeStyles.recipeCard}>
+              <Text style={homeStyles.recipeTitle}>{recipe.title}</Text>
+              <Text style={homeStyles.recipeDescription}>
+                {recipe.description}
+              </Text>
+            </View>
+          ))}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
