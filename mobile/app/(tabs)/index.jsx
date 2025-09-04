@@ -25,7 +25,7 @@ export default function HomeScreen() {
     // Fetch recipes or perform any setup actions here
     getRecipes()
       .then((data) => {
-        setRecipes(data.data);
+        setRecipes(data.recipes);
         console.log(data);
       })
       .catch((error) => console.error("Error fetching recipes:", error));
