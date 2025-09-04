@@ -1,5 +1,6 @@
 import { and, eq } from "drizzle-orm"; // adjust depending on your ORM
 import { recipeTable } from "../db/schema.js";
+import { db } from "../config/db.js";
 
 export const getRecipies = async (req, res) => {
   try {
@@ -45,8 +46,8 @@ export const getRecipies = async (req, res) => {
 export const addRecipe = async (req, res) => {
   try {
     const data = req.body;
-    const newRecipe = await db.select(recipeTable).insert(data).returning();
-    res.status(201).json(newRecipe[0]);
+    const newRecipe = await db.insert(recipeTable).values(data).returning();
+    res.status(201).json({ success: "Created successfully" }, newRecipe[0]);
   } catch (error) {
     console.log("Error adding recipe", error);
     res.status(500).json({ error: "Something went wrong" });
@@ -56,7 +57,7 @@ export const addRecipe = async (req, res) => {
 export const updateRecipe = async (req, res) => {
   try {
     const recipeId = req.params.id;
-    const userId = req.user.id;
+
     const data = req.body;
     // Check recipe ownership
     const [recipe] = await db
@@ -66,7 +67,7 @@ export const updateRecipe = async (req, res) => {
     if (!recipe) {
       return res.status(404).json({ error: "Recipe not found" });
     }
-    if (recipe.userId !== userId) {
+    if (recipe.userId !== data.userId) {
       return res
         .status(403)
         .json({ error: "You are not allowed to update this recipe" });
@@ -88,7 +89,8 @@ export const updateRecipe = async (req, res) => {
 export const deleteRecipe = async (req, res) => {
   try {
     const recipeId = req.params.id;
-    const userId = req.user.id;
+    const userId = req.auth.userId;
+
     // Check recipe ownership
     const [recipe] = await db
       .select()

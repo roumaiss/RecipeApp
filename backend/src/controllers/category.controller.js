@@ -3,7 +3,6 @@ import { categoryTable } from "../db/schema.js";
 
 export const addToCategory = async (req, res) => {
   try {
-    console.log(req.body);
     const { image, name } = req.body;
 
     if (!image || !name) {
@@ -17,7 +16,7 @@ export const addToCategory = async (req, res) => {
         name,
       })
       .returning();
-
+    console.log(newCategory[0]);
     res.status(201).json(newCategory[0]);
   } catch (error) {
     console.log("Error adding to category", error);

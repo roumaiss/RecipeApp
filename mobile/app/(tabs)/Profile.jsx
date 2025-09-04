@@ -49,35 +49,8 @@ export default function UpdateProfile() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      {/* Email */}
-      <TextInput
-        placeholder="New Email"
-        value={email}
-        onChangeText={setEmail}
-        style={{ borderBottomWidth: 1, marginBottom: 10 }}
-      />
-      <Button title="Update Email" onPress={updateEmail} />
-
-      {/* Password */}
-      <TextInput
-        placeholder="Current Password"
-        secureTextEntry
-        value={currentPassword}
-        onChangeText={setCurrentPassword}
-        style={{ borderBottomWidth: 1, marginBottom: 10 }}
-      />
-      <TextInput
-        placeholder="New Password"
-        secureTextEntry
-        value={newPassword}
-        onChangeText={setNewPassword}
-        style={{ borderBottomWidth: 1, marginBottom: 10 }}
-      />
-      <Button title="Update Password" onPress={updatePassword} />
-
-      {/* Profile Image */}
-      <Button title="Update Profile Image" onPress={updateImage} />
+    <View style={{}}>
+      
     </View>
   );
 }
