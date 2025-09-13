@@ -19,19 +19,22 @@ import { useRouter } from "expo-router";
 import { getRecipes } from "../../services/recipes";
 import { useEffect, useState } from "react";
 import Card from "../../components/Card";
+import { useDebounce } from "@uidotdev/usehooks";
 
 export default function HomeScreen() {
   const route = useRouter();
+  const [searchText, setSearchText] = useState("");
+  const debouncedSearchTerm = useDebounce(searchText, 300);
+
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     // Fetch recipes or perform any setup actions here
-    getRecipes()
+    getRecipes({search : debouncedSearchTerm })
       .then((data) => {
         setRecipes(data.recipes);
-        console.log(data);
       })
       .catch((error) => console.error("Error fetching recipes:", error));
-  }, []);
+  }, [debouncedSearchTerm]);
 
   return (
     <View style={homeStyles.container}>
@@ -44,7 +47,7 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={homeStyles.ScrollView}
         >
-          <SearchBar onSearch={() => console.log("Search triggered")} />
+          <SearchBar setSearchText={setSearchText} searchText={searchText} />
           <GradientBox />
           <TouchableOpacity
             style={homeStyles.button}
@@ -53,7 +56,19 @@ export default function HomeScreen() {
             <Ionicons name="add" size={30} color={CreamCake.secondary} />
             <Text style={homeStyles.btnText}>Add Recipe</Text>
           </TouchableOpacity>
-          <Text style={homeStyles.sectionTitle}>MY RECIPES</Text>
+          <View style={homeStyles.headerSection}>
+            <Text style={homeStyles.sectionTitle}>MY RECIPES</Text>
+            <TouchableOpacity
+              onPress={() =>
+                route.push({
+                  pathname: "/recipes",
+                  params: { type: "Myrecipes" },
+                })
+              }
+            >
+              <Text style={homeStyles.View}>View All</Text>
+            </TouchableOpacity>
+          </View>
           {recipes.length > 0 && (
             <FlatList
               data={recipes.slice(0, 2)}
