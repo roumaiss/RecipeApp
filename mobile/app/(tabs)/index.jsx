@@ -5,6 +5,7 @@ import {
   Platform,
   TouchableOpacity,
   Text,
+  FlatList,
 } from "react-native";
 import { homeStyles } from "../../assets/styles/home.styles";
 import SearchBar from "../../components/SearchBar";
@@ -17,6 +18,7 @@ import { useRouter } from "expo-router";
 
 import { getRecipes } from "../../services/recipes";
 import { useEffect, useState } from "react";
+import Card from "../../components/Card";
 
 export default function HomeScreen() {
   const route = useRouter();
@@ -51,14 +53,24 @@ export default function HomeScreen() {
             <Ionicons name="add" size={30} color={CreamCake.secondary} />
             <Text style={homeStyles.btnText}>Add Recipe</Text>
           </TouchableOpacity>
-          {recipes?.map((recipe) => (
-            <View key={recipe.id} style={homeStyles.recipeCard}>
-              <Text style={homeStyles.recipeTitle}>{recipe.title}</Text>
-              <Text style={homeStyles.recipeDescription}>
-                {recipe.description}
-              </Text>
-            </View>
-          ))}
+          <Text style={homeStyles.sectionTitle}>MY RECIPES</Text>
+          {recipes.length > 0 && (
+            <FlatList
+              data={recipes.slice(0, 2)}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => route.push(`/recipe/${item.id}`)}
+                >
+                  <Card recipe={item} />
+                </TouchableOpacity>
+              )}
+              numColumns={2}
+              columnWrapperStyle={homeStyles.row}
+              contentContainerStyle={homeStyles.recipesGrid}
+              scrollEnabled={false}
+            />
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
