@@ -26,15 +26,28 @@ const TabsLayout = () => {
         tabBarInactiveTintColor: CreamCake.background,
         tabBarStyle: {
           backgroundColor: CreamCake.primary,
-          shadowColor: "transparent",
+          shadowColor: CreamCake.primary,
+          elevation: 4,
           borderRadius: 30,
           height: 60,
           position: "absolute",
           marginBottom: 10,
           marginHorizontal: 10,
+          // Remove default padding to have more control
+          paddingBottom: 0,
+          paddingTop: 0,
+          paddingHorizontal: 0,
+        },
+        tabBarItemStyle: {
+          // Center each tab item vertically and horizontally
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          paddingVertical: 4,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 10,
           fontWeight: "bold",
         },
       }}
