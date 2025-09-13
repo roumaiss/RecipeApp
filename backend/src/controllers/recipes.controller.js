@@ -1,11 +1,11 @@
-import { and, eq } from "drizzle-orm"; // adjust depending on your ORM
+import { and, eq, ilike , or } from "drizzle-orm"; // adjust depending on your ORM
 import { recipeTable } from "../db/schema.js";
 import { db } from "../config/db.js";
 
 export const getRecipies = async (req, res) => {
   try {
-    let { userId, category, page = 1, limit = 10 } = req.query;
-
+    let { userId, category, page = 1, limit = 10, search } = req.query;
+    console.log(search);
     // Convert query params to numbers
     page = Number(page);
     limit = Number(limit);
@@ -21,7 +21,14 @@ export const getRecipies = async (req, res) => {
     if (category) {
       conditions.push(eq(recipeTable.categoryId, parseInt(category)));
     }
-
+    if (search) {
+      conditions.push(
+        or(
+          ilike(recipeTable.title, `%${search}%`),
+          ilike(recipeTable.description, `%${search}%`)
+        )
+      );
+    }
     let query = db.select().from(recipeTable).limit(limit).offset(offset);
 
     // Apply conditions if they exist
