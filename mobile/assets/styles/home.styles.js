@@ -51,7 +51,7 @@ export const homeStyles = StyleSheet.create({
     fontWeight: "bold",
     color: CreamCake.primary,
     fontSize: 24,
-    marginTop: 20,
+    
   },
   recipesGrid: {
     gap: 10,
@@ -60,4 +60,14 @@ export const homeStyles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
+  headerSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  View:{
+    fontWeight:"bold", 
+    color:CreamCake.text
+  }
 });
