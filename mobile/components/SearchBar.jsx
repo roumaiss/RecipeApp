@@ -1,16 +1,12 @@
-import { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import CreamCake from "../constants/colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const SearchBar = ({ onSearch }) => {
-  const [searchText, setSearchText] = useState("");
-
+const SearchBar = ({ searchText, setSearchText }) => {
   const handleSearchChange = (text) => {
     setSearchText(text);
-    onSearch(text);
   };
-
+  console.log(searchText);
   return (
     <View style={styles.container}>
       <Ionicons

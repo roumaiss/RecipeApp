@@ -1,8 +1,20 @@
 import axios from "axios";
 
-export const getRecipes = async () => {
+export const getRecipes = async ({ search }) => {
   try {
-    const res = await axios.get("http://192.168.100.9:5001/api/recipes");
+    // FIX 1: Parameter name should be 'search' not 'debouncedSearchTerm'
+    // FIX 2: URL query parameter should use '=' not ':'
+
+    let url = `http://192.168.100.9:5001/api/recipes`;
+
+    // Only add search parameter if search term exists
+    if (search && search.trim()) {
+      url += `?search=${encodeURIComponent(search.trim())}`;
+    }
+
+    console.log("Fetching URL:", url); // Debug log
+
+    const res = await axios.get(url);
     return res.data;
   } catch (err) {
     console.error("API error:", err);
