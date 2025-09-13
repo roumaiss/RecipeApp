@@ -11,7 +11,7 @@ import { useState } from "react";
 import { authStyles } from "../../assets/styles/auth.styles";
 import { Image } from "expo-image";
 import CreamCake from "../../constants/colors";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GoogleBtn from "../../components/GoogleBtn";
@@ -19,7 +19,7 @@ import Toast from "react-native-toast-message";
 import VerifyEmail from "./verify-email";
 
 const SignUp = () => {
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const { isLoaded, signUp } = useSignUp();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
