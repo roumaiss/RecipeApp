@@ -9,6 +9,7 @@ export const homeStyles = StyleSheet.create({
     backgroundColor: CreamCake.background,
   },
   ScrollView: {
+    flex: 1,
     paddingBottom: 32,
   },
   keyboardView: {
@@ -45,5 +46,18 @@ export const homeStyles = StyleSheet.create({
     color: CreamCake.secondary,
     fontWeight: "bold",
     fontSize: 16,
+  },
+  sectionTitle: {
+    fontWeight: "bold",
+    color: CreamCake.primary,
+    fontSize: 24,
+    marginTop: 20,
+  },
+  recipesGrid: {
+    gap: 10,
+  },
+  row: {
+    justifyContent: "space-between",
+    gap: 10,
   },
 });
