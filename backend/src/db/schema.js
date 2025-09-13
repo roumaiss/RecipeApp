@@ -29,6 +29,7 @@ export const categoryTable = pgTable("categories", {
 export const recipeTable = pgTable("recipes", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
+  description: text("description").notNull(),
   image: text("image"),
   ingredients: jsonb("ingredients").notNull(), // array of objects
   instructions: jsonb("instructions").notNull(), // array of strings
