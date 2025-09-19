@@ -4,7 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 
 const Myrecipes = () => {
   const { type = "Myrecipes" } = useLocalSearchParams();
-  console.log(type);
+  
   return (
     <View>
       <Text>Recipes</Text>

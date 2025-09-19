@@ -2,9 +2,9 @@ import React from "react";
 import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "@clerk/clerk-expo";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import CreamCake from "../../constants/colors";
-import CustomAddButton from "../../components/CustomTab";
-import ProfileAvatar from "../../components/ProfileAvatar";
+import CreamCake from "@/constants/colors";
+import CustomAddButton from "@/components/CustomTab";
+import ProfileAvatar from "@/components/ProfileAvatar";
 
 const TabsLayout = () => {
   const { isSignedIn } = useAuth();
@@ -12,7 +12,7 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerStyle: {
           height: 80,
         },
@@ -53,7 +53,7 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
@@ -62,7 +62,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="export"
+        name="(export)"
         options={{
           title: "Export",
           tabBarIcon: ({ color, size }) => (
@@ -81,7 +81,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="Favorites"
+        name="(favorites)"
         options={{
           title: "Favorites",
           tabBarIcon: ({ color, size }) => (
@@ -90,7 +90,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="Profile"
+        name="(profile)"
         options={{
           title: "Profile",
           tabBarIcon: ({ color, size }) => (

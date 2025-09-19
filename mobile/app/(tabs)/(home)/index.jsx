@@ -5,38 +5,23 @@ import {
   Platform,
   TouchableOpacity,
   Text,
-  FlatList,
 } from "react-native";
-import { homeStyles } from "../../assets/styles/home.styles";
-import SearchBar from "../../components/SearchBar";
+import { homeStyles } from "@/assets/styles/home.styles";
+import SearchBar from "@/components/SearchBar";
 
-import GradientBox from "../../components/GradientBox";
+import GradientBox from "@/components/GradientBox";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
-import CreamCake from "../../constants/colors";
+import CreamCake from "@/constants/colors";
 import { useRouter } from "expo-router";
-
-import { getRecipes } from "../../services/recipes";
-import { useEffect, useState } from "react";
-import Card from "../../components/Card";
-import { useDebounce } from "@uidotdev/usehooks";
+import { useState } from "react";
+import { Recipes } from "@/components/Recipes";
 
 export default function HomeScreen() {
   const route = useRouter();
   const [searchText, setSearchText] = useState("");
-  const debouncedSearchTerm = useDebounce(searchText, 300);
-
-  const [recipes, setRecipes] = useState([]);
-  useEffect(() => {
-    // Fetch recipes or perform any setup actions here
-    getRecipes({search : debouncedSearchTerm })
-      .then((data) => {
-        setRecipes(data.recipes);
-      })
-      .catch((error) => console.error("Error fetching recipes:", error));
-  }, [debouncedSearchTerm]);
-
   return (
+    
     <View style={homeStyles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -69,23 +54,7 @@ export default function HomeScreen() {
               <Text style={homeStyles.View}>View All</Text>
             </TouchableOpacity>
           </View>
-          {recipes.length > 0 && (
-            <FlatList
-              data={recipes.slice(0, 2)}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => route.push(`/recipe/${item.id}`)}
-                >
-                  <Card recipe={item} />
-                </TouchableOpacity>
-              )}
-              numColumns={2}
-              columnWrapperStyle={homeStyles.row}
-              contentContainerStyle={homeStyles.recipesGrid}
-              scrollEnabled={false}
-            />
-          )}
+          <Recipes slice={2} searchText={searchText}/>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

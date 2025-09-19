@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
-import SearchBar from "../../components/SearchBar";
-import { explorStyle } from "../../assets/styles/explore.style";
-import { getCategories } from "../../services/category";
-import Category from "../../components/Category";
+import SearchBar from "@/components/SearchBar";
+import { explorStyle } from "@/assets/styles/explore.style";
+import { getCategories } from "@/services/category";
+import Category from "@/components/Category";
 
 const Export = () => {
   const [categories, setCategories] = useState([]);
