@@ -1,5 +1,5 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { UserButton, useUser } from "@clerk/clerk-expo";
+import { StyleSheet, TouchableOpacity,  } from "react-native";
+import {  useUser } from "@clerk/clerk-expo";
 import { Image } from "expo-image";
 
 const ProfileAvatar = () => {
