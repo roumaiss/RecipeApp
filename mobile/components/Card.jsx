@@ -11,7 +11,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import { useState } from "react";
 
 const { width } = Dimensions.get("window");
-const cardWidth = (width - 40) / 2;
+const cardWidth = (width - 50) / 2;
 
 const Card = ({ recipe }) => {
   // const { width } = Dimensions.get("window");

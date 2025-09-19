@@ -5,12 +5,12 @@ export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingTop: 20,
     backgroundColor: CreamCake.background,
   },
   ScrollView: {
-    flex: 1,
-    paddingBottom: 32,
+    flexGrow: 1,
+    paddingBottom: 110,
+    marginTop:15
   },
   keyboardView: {
     flex: 1,
@@ -55,6 +55,10 @@ export const homeStyles = StyleSheet.create({
   },
   recipesGrid: {
     gap: 10,
+    marginVertical:20, 
+    paddingHorizontal:10, 
+    justifyContent:"center", 
+    alignItems:  "center"
   },
   row: {
     justifyContent: "space-between",
