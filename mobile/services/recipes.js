@@ -5,7 +5,7 @@ export const getRecipes = async ({ search }) => {
     // FIX 1: Parameter name should be 'search' not 'debouncedSearchTerm'
     // FIX 2: URL query parameter should use '=' not ':'
 
-    let url = `http://192.168.100.9:5001/api/recipes`;
+    let url = `${process.env.EXPO_PUBLIC_BASE_URL}/api/recipes`;
 
     // Only add search parameter if search term exists
     if (search && search.trim()) {
