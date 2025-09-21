@@ -1,18 +1,27 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
-import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
+import { View, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { homeStyles } from "../../assets/styles/home.styles";
+import { Recipes } from "../../components/Recipes";
+import SearchBar from "../../components/SearchBar";
 
 const Myrecipes = () => {
   const { type = "Myrecipes" } = useLocalSearchParams();
-
+  const [searchText, setSearchText] = useState("");
   return (
-    <View>
+    <View style={homeStyles.container}>
       <Stack.Screen
         options={{
           title: "My recipes",
         }}
       />
-      <Text>Recipes</Text>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={homeStyles.ScrollView}
+      >
+        <SearchBar setSearchText={setSearchText} searchText={searchText} />
+        <Recipes searchText={searchText} />
+      </ScrollView>
     </View>
   );
 };
