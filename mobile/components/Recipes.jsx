@@ -22,7 +22,7 @@ export const Recipes = ({ searchText, slice }) => {
     <NoContent refetch={refetch} />
   ) : (
     <FlatList
-      data={slice ? data.recipes.slice(0, slice) : data}
+      data={slice ? data.recipes.slice(0, slice) : data.recipes}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => router.push(`/recipe/${item.id}`)}>
