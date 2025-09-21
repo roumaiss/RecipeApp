@@ -13,7 +13,7 @@ import GradientBox from "@/components/GradientBox";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CreamCake from "@/constants/colors";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { Recipes } from "@/components/Recipes";
 
@@ -21,8 +21,12 @@ export default function HomeScreen() {
   const route = useRouter();
   const [searchText, setSearchText] = useState("");
   return (
-    
     <View style={homeStyles.container}>
+      <Stack.Screen
+        options={{
+          title: "Home",
+        }}
+      />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={homeStyles.keyboardView}
@@ -54,7 +58,7 @@ export default function HomeScreen() {
               <Text style={homeStyles.View}>View All</Text>
             </TouchableOpacity>
           </View>
-          <Recipes slice={2} searchText={searchText}/>
+          <Recipes slice={2} searchText={searchText} />
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

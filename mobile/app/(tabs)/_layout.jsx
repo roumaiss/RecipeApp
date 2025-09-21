@@ -12,10 +12,7 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
-        headerStyle: {
-          height: 80,
-        },
+        headerShown: true,
         headerTitleStyle: {
           fontSize: 20,
           fontWeight: "bold",
@@ -53,16 +50,17 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="(home)"
+        name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
+        
         }}
       />
       <Tabs.Screen
-        name="(export)"
+        name="export"
         options={{
           title: "Export",
           tabBarIcon: ({ color, size }) => (
@@ -81,7 +79,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="(favorites)"
+        name="Favorites"
         options={{
           title: "Favorites",
           tabBarIcon: ({ color, size }) => (
@@ -90,7 +88,7 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="(profile)"
+        name="Profile"
         options={{
           title: "Profile",
           tabBarIcon: ({ color, size }) => (

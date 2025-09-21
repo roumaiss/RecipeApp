@@ -39,7 +39,6 @@ export default function GoogleBtn() {
           session: createdSessionId,
           navigate: async ({ session }) => {
             if (session?.currentTask) {
-              console.log(session.currentTask);
               return;
             }
 

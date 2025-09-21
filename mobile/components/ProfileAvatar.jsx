@@ -4,7 +4,6 @@ import { Image } from "expo-image";
 
 const ProfileAvatar = () => {
   const { user } = useUser();
-  console.log(user?.imageUrl);
   const handleAvatarPress = () => {
     // Navigate to profile or show user menu
     // You can add navigation logic here

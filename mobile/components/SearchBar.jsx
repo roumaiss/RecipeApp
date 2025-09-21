@@ -6,7 +6,6 @@ const SearchBar = ({ searchText, setSearchText }) => {
   const handleSearchChange = (text) => {
     setSearchText(text);
   };
-  console.log(searchText);
   return (
     <View style={styles.container}>
       <Ionicons

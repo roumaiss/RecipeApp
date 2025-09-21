@@ -9,7 +9,7 @@ import { Image } from "expo-image";
 import { explorStyle } from "../assets/styles/explore.style";
 import CreamCake from "../constants/colors";
 const Category = ({ item, setSelected, selected }) => {
-  console.log(`${process.env.EXPO_PUBLIC_BASE_URL}${item.image}`);
+  
   return (
     <TouchableOpacity onPress={() => setSelected(item.name)}>
       <View
