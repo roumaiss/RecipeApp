@@ -15,7 +15,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import CreamCake from "@/constants/colors";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
-import { Recipes } from "@/components/Recipes";
+import { Recipes } from "../../components/Recipes";
 
 export default function HomeScreen() {
   const route = useRouter();
@@ -58,7 +58,7 @@ export default function HomeScreen() {
               <Text style={homeStyles.View}>View All</Text>
             </TouchableOpacity>
           </View>
-          <Recipes slice={2} searchText={searchText} />
+          <Recipes limit={2} searchText={searchText} shouldUseUserId={true} />
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

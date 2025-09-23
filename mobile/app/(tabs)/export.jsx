@@ -1,31 +1,14 @@
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  FlatList,
-} from "react-native";
-import { useEffect, useState } from "react";
-import { useDebounce } from "@uidotdev/usehooks";
+import { View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import { explorStyle } from "@/assets/styles/explore.style";
-import { getCategories } from "@/services/category";
-import Category from "@/components/Category";
+import Categories from "../../components/Categories";
 
 const Export = () => {
-  const [categories, setCategories] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   // const debouncedSearchTerm = useDebounce(searchText, 300);
-  useEffect(() => {
-    // Fetch recipes or perform any setup actions here
-    getCategories()
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((error) => console.error("Error fetching categories:", error));
-  }, []);
+
   return (
     <View style={explorStyle.container}>
       <KeyboardAvoidingView
@@ -37,17 +20,8 @@ const Export = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={explorStyle.ScrollView}
         >
-          <SearchBar setSearchText={setSearchText} searchText={searchText}  />
-          <FlatList
-            data={categories}
-            renderItem={({ item }) => (
-              <Category item={item} setSelected={setSelected} selected={selected} />
-            )}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={explorStyle.grid}
-          />
+          <SearchBar setSearchText={setSearchText} searchText={searchText} />
+          <Categories selected={selected} setSelected={setSelected} />          
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
