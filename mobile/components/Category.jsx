@@ -1,17 +1,11 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { explorStyle } from "../assets/styles/explore.style";
 import CreamCake from "../constants/colors";
 const Category = ({ item, setSelected, selected }) => {
-  
   return (
-    <TouchableOpacity onPress={() => setSelected(item.name)}>
+    <TouchableOpacity
+      onPress={() => setSelected(selected === item.name ? "" : item.name)}
+    >
       <View
         style={[
           categoryStyle.container,
@@ -31,6 +25,7 @@ const categoryStyle = StyleSheet.create({
   container: {
     gap: 10,
     alignItems: "center",
+    justifyContent: "center",
   },
   active: {
     borderWidth: 2,
@@ -41,6 +36,7 @@ const categoryStyle = StyleSheet.create({
   image: {
     height: 75,
     width: 75,
+    contentFit: "contain",
   },
   name: {
     fontWeight: "bold",
