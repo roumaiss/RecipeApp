@@ -1,18 +1,26 @@
 import axios from "axios";
 
-export const getRecipes = async ({ search }) => {
+export const getRecipes = async ({ search, userId, limit }) => {
   try {
-    // FIX 1: Parameter name should be 'search' not 'debouncedSearchTerm'
-    // FIX 2: URL query parameter should use '=' not ':'
-
     let url = `${process.env.EXPO_PUBLIC_BASE_URL}/api/recipes`;
 
-    // Only add search parameter if search term exists
+    const params = new URLSearchParams();
+
     if (search && search.trim()) {
-      url += `?search=${encodeURIComponent(search.trim())}`;
+      params.append("search", search.trim());
+    }
+    if (userId) {
+      params.append("userId", userId);
+    }
+    if (limit) {
+      params.append("limit", limit);
     }
 
-    console.log("Fetching URL:", url); // Debug log
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+
+    console.log("Fetching URL:", url);
 
     const res = await axios.get(url);
     return res.data;
