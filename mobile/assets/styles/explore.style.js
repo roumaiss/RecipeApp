@@ -17,7 +17,7 @@ export const explorStyle = StyleSheet.create({
   },
   
   grid: {
-    gap: 30,
-    marginVertical: 20,
+    gap: 10,
+    marginTop: 20,
   },
 });
