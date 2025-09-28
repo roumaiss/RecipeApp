@@ -76,6 +76,7 @@ const TabsLayout = () => {
             <Ionicons name="add" size={30} color={CreamCake.primary} />
           ),
           tabBarButton: (props) => <CustomAddButton {...props} />, // Use the custom component
+          headerShown: false, // Hide header for this screen
         }}
       />
       <Tabs.Screen
